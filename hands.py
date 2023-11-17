@@ -56,7 +56,6 @@ while True:
                     throwing = True  # indica que agora, ela ira ser lancada para cima
                     ball_falling = False  # ela para de cair
                     pontos += 1 # aumenta 1 ponto
-                    ball_color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))  # Cor aleatória
 
     # Verifique se a tecla 'b' foi pressionada para iniciar a queda da bolinha
     if cv2.waitKey(1) & 0xFF == ord('b') and not ball_falling and not throwing:
@@ -86,10 +85,11 @@ while True:
         ball_position[1] -= 30  # Ajuste a velocidade do lançamento conforme necessário
 
         # Verificar se a bolinha atingiu o ponto mais alto e começar a cair novamente
-        if ball_position[1] < image.shape[0]:
+        if ball_position[1] < 0:
             throwing = False
             ball_falling = True
             ball_position = [random.randint(0, image.shape[1]), 0]
+            ball_color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))  # Cor aleatória
         
         # se não, continuar desenhando a bolinha
         else:
